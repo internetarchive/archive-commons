@@ -95,9 +95,10 @@ public class HTTPImportMapper extends Mapper<LongWritable, Text, Text, Text> {
 	        int code = client.executeMethod(head);
 	        if(code != 200) {
 	        	if(softFails) {
-	        		System.err.format("FAILED - non-200 for " + url);
+	        		System.err.format("Non-200 for HEAD: " + url);
+                                return -1;
 	        	} else {
-	        		throw new IOException("Non-200 for HEAD:" + url);
+	        		throw new IOException("Non-200 for HEAD: " + url);
 	        	}
 	        }
 	        urlLen = head.getResponseContentLength();
@@ -129,6 +130,9 @@ public class HTTPImportMapper extends Mapper<LongWritable, Text, Text, Text> {
 			// there's a file in the filesystem already, see if it's the
 			// same length:
 			urlLen = getURLLengthByHead(url);
+			if ( urlLen < 0 ) {
+				return;
+                          }
 			if(urlLen == targetLen) {
 				// same size, assume it's done:
 				return;
