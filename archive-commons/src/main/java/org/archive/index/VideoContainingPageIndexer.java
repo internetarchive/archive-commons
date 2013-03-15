@@ -88,7 +88,8 @@ public class VideoContainingPageIndexer {
 			String discoveryPath = fields[4];
 			if (fetchStatus > 0 && mimetype.matches("(?i)^video/.*$")) {
 				String via = fields[5];
-				String fetchD14 = fields[8];
+				// chop off fetch elapsed time "+123457"
+				String fetchD14 = fields[8].substring(0, 14);
 				String sha1 = fields[9];
 				if (sha1.startsWith("sha1:")) {
 					sha1 = sha1.substring(5);
