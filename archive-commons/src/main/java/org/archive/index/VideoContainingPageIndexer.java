@@ -58,10 +58,10 @@ public class VideoContainingPageIndexer {
 	}
 
 	private static final URLCanonicalizer aggressive = new AggressiveIAURLCanonicalizer();
-	protected static String aggressive(String url) throws URIException {
+	protected static String aggressiveSchemelessSurt(String url) throws URIException {
 	    HandyURL handyUrl = URLParser.parse(url);
 	    aggressive.canonicalize(handyUrl);
-	    return handyUrl.getURLString();
+	    return handyUrl.getSURTString(false);
 	}
 
 	protected static void logHisto(File crawlLogFile, Map<String, Integer> histo) {
@@ -95,7 +95,7 @@ public class VideoContainingPageIndexer {
 				}
 
 				for (String containingPage: findContainingPages(viaIndexFile, via, discoveryPath)) {
-					String containingPageKey = aggressive(containingPage);
+					String containingPageKey = aggressiveSchemelessSurt(containingPage);
 					String videoUrl = fields[3];
 					String size = fields[2];
 					

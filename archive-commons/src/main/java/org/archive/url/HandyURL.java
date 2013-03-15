@@ -50,13 +50,17 @@ public class HandyURL {
 		this.hash = hash;
 	}
 	
-	public String getURLString(boolean surt, boolean appendScheme, boolean publicSuffix) {
+	public String getSURTString(boolean includeScheme) {
+		return getURLString(true, includeScheme, false);
+	}
+	
+	public String getURLString(boolean surt, boolean includeScheme, boolean publicSuffix) {
 		if(opaque != null) {
 			return opaque;
 		}
 		StringBuilder sb = new StringBuilder();
 
-		if(appendScheme) {
+		if(includeScheme) {
 			sb.append(scheme).append("://");
 		}
 		
