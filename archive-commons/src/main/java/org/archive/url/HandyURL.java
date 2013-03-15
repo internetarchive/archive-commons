@@ -49,7 +49,7 @@ public class HandyURL {
 		this.query = query;
 		this.hash = hash;
 	}
-	
+
 	public String getSURTString(boolean includeScheme) {
 		return getURLString(true, includeScheme, false);
 	}
@@ -62,10 +62,9 @@ public class HandyURL {
 
 		if(includeScheme) {
 			sb.append(scheme).append("://");
-		}
-		
-		if(surt) {
-			sb.append("(");
+			if (surt) {
+				sb.append("(");
+			}
 		}
 		if(authUser != null) {
 			sb.append(authUser);
