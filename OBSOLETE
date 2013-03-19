@@ -1,0 +1,3 @@
+archive-commons has been split into two projects:
+- ia-web-commons: https://github.com/internetarchive/ia-web-commons
+- ia-hadoop-tools: https://github.com/internetarchive/ia-hadoop-tools
